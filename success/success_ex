@@ -43,3 +43,15 @@ rot_13
 snake_to_camel
 ft_rrange
 ft_split
+ft_putstr
+swap_bits
+str_capitalizer
+ulstr
+ft_strcspn
+epur_str
+rev_wstr
+first_word
+search_and_replace
+ft_atoi
+tab_mult
+rostring
