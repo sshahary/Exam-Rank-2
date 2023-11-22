@@ -1,55 +1,52 @@
+
 #include <stdlib.h>
 
-int	absolut(int nbr)
+int ft_absolute(int nbr)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
+    if (nbr < 0)
+        return (-nbr);
+    return (nbr);
+}
+int     *ft_rrange(int start, int end)
+{
+    int *range;
+    int i;
+    int size;
+
+    if(start > end)
+    {
+        return (ft_rrange(end, start));
+    }
+    size = ft_absolute(start - end);
+    range = (int *)malloc((size + 1) * sizeof(int));
+    if(!range)
+        return 0;
+    i = 0;
+    while(i <= size)
+    {
+        range[i] = end;
+        end--;;
+        i++;
+    }
+    return(range);
 }
 
-int	*ft_rrange(int start, int end)
-{
-	int size = absolut(start - end);
-	int i = 0;
-
-	if (start > end)
-		return (ft_rrange(end, start));
-	int *range = (int *)malloc((size + 1) * sizeof(int));
-	if (!range)
-		return (NULL);
-	while (size >= 0)
-	{
-		range[i] = end;
-		end--;
-		i++;
-		size--;
-
-	}
-	return (range);
-}
-
-// #include<stdio.h>
 // int main()
 // {
-//     int start = -1;
-//     int end = 2;
-
+//     int start = 5;
+//     int end = 1;
 //     int *result = ft_rrange(start, end);
 
-//     if (result == NULL)
+//     if (result != NULL)
 //     {
-//         printf("Memory allocation failed.\n");
-//         return 1;
-//     }
+//         // Print the result or use it as needed
+//         for (int i = 0; i <= ft_absolute(start - end); i++)
+//         {
+//             printf("%d ", result[i]);
+//         }
 
-//     printf("Reversed range from %d to %d:\n", start, end);
-//     for (int i = 0; i <= absolut(start - end); i++)
-//     {
-//         printf("%d ", result[i]);
+//         free(result); // Don't forget to free the allocated memory
 //     }
-
-//     // Don't forget to free the allocated memory
-//     free(result);
 
 //     return 0;
 // }

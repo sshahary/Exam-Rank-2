@@ -1,46 +1,38 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   expand_str.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 12:22:22 by sshahary          #+#    #+#             */
-/*   Updated: 2023/10/31 13:30:46 by sshahary         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 
-void	space_words(char *s)
+void expandstr(char *str)
 {
-	int	i;
-	int	b;
+    int i;
+    int flag;
+    
+    i = 0;
 
-	i = 0;
-	while (s[i] == ' ' || s[i] == '\t')
-		i++;
-	while (s && s[i] != '\0')
-	{
-		if (s[i] == ' ' || s[i] == '\t')
-			b = 1;
-		if (!(s[i] == ' ' || s[i] == '\t'))
-		{
-			if (b)
-				write(1, "   ", 3);
-			b = 0;
-			write(1, &s[i], 1);
-		}
-		i++;
-	}
+    while(str[i])
+    {
+        if ((str[i] == ' ' || str[i] == '\t'))
+            i++;
+        while(str[i])
+        {
+            if ((str[i] == ' ' || str[i] == '\t'))
+                flag = 1;
+            if (!(str[i] == ' ' || str[i] == '\t'))
+            {
+                if(flag)
+                    write(1, "   ", 3); 
+                write(1, &str[i], 1);
+                flag = 0;         
+            }
+            i++;
+        }
+    }
 }
 
-int	main(int ac, char *argv[])
+int main(int argc, char *argv[])
 {
-	if (ac == 2)
-	{
-		space_words(argv[1]);
-	}
-	write(1, "\n", 1);
-	return (0);
+    if (argc == 2)
+    {
+        expandstr(argv[1]);
+    }
+    write(1, "\n", 1);
+    return(0);
 }
